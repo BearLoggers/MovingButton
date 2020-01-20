@@ -16,20 +16,19 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout myLayout = null;
-    private Button luckyID = null;
+    private ImageView luckyID = null;
 
     private float px = -1;
     private float py = -1;
     private float X;
     private float Y;
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myLayout = (RelativeLayout) findViewById(R.id.myLayout);
-        luckyID = (Button) findViewById(R.id.luckyID);
+        luckyID = (ImageView) findViewById(R.id.luckyID);
 
         X = luckyID.getX();
         Y = luckyID.getY();
