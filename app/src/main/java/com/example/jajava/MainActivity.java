@@ -39,15 +39,45 @@ public class MainActivity extends AppCompatActivity {
                 float x = event.getX();
                 float y = event.getY();
                 if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                    x = x-250;
-                    y = y-150;
-
                     float dX = x - px;
                     float dY = y - py;
 
                     if (px != -1 && py != -1) {
                         X += dX;
                         Y += dY;
+
+                        float screen_width = myLayout.getMeasuredWidth();
+                        float screen_height = myLayout.getMeasuredHeight();
+                        float img_width = luckyID.getWidth();
+                        float img_height = luckyID.getHeight();
+                        float scale_x = luckyID.getScaleX();
+                        float scale_y = luckyID.getScaleY();
+
+                        float ax = (img_width  * (scale_x - 1)) / 2;
+                        float ay = (img_height * (scale_y - 1)) / 2;
+
+                        Log.d("TUPOI AYX", String.format("IW: %f IH: %f", img_width, img_height));
+
+                        /*float Xstrih = X - ax;
+                        float Ystrih = Y - ay;*/
+
+                        if (X - ax > 0) {
+                            X = ax;
+                            Log.d("Ae1", String.format("AX: %f", ax));
+                        }
+                        if (X + img_width + ax < screen_width) {
+                            X = screen_width - img_width - ax;
+                            Log.d("Ae3", String.format("SW: %f; IW: %f", screen_width, img_width));
+                        }
+
+                        if (Y - ay > 0) {
+                            Y = ay;
+                            Log.d("Ae2", String.format("AY: %f", ay));
+                        }
+                        if (Y + img_height + ay < screen_height) {
+                            Y = screen_height - img_height - ay;
+                            Log.d("Ae4", String.format("SH: %f, IH: %f", screen_height, img_height));
+                        }
 
                         Log.d("STATE", String.format("DX, DY: %f %f", dX, dY));
                         Log.d("STATE2", String.format("X, Y: %f %f", X, Y));
