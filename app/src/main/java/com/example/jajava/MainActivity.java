@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private float X;
     private float Y;
 
+    private float sinX = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_MOVE) {
                     float dX = x - px;
                     float dY = y - py;
+
+                    sinX += 0.01;
+                    luckyID.setScaleX((float)(Math.abs((2 * Math.sin(sinX))) + 2));
+                    luckyID.setScaleY((float)(Math.abs((2 * Math.sin(sinX))) + 2));
 
                     if (px != -1 && py != -1) {
                         X += dX;
